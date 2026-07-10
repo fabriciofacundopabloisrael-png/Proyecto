@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, viewport-fit=cover">
+<title>Guía de Entrevista — Iglesia de José Leonardo Ortiz</title>
+<style>
+  :root{
+    --stone:      #EDE7DC;
+    --stone-dark: #DCD3C1;
+    --ink:        #2C2620;
+    --ink-soft:   #6B5F4F;
+    --brass:      #A9773F;
+    --brass-dark: #8A5F30;
+    --sanctuary:  #6E4A2E;
+    --candle:     #C9963F;
+    --done-green: #4C6E4A;
+    --card-bg:    #FFFDF8;
+    --shadow:     0 2px 8px rgba(44,38,32,0.08);
+  }
+
+  *{ box-sizing:border-box; -webkit-tap-highlight-color:transparent; }
+  html{ -webkit-text-size-adjust:100%; }
+
+  body{
+    margin:0;
+    background:
+      radial-gradient(ellipse at top, rgba(169,119,63,0.08), transparent 60%),
+      var(--stone);
+    color:var(--ink);
+    font-family: 'Iowan Old Style','Palatino Linotype', Georgia, 'Times New Roman', serif;
+    padding-bottom:calc(74px + env(safe-area-inset-bottom));
+    overflow-x:hidden;
+    width:100%;
+  }
+
+  header{
+    background: linear-gradient(180deg, var(--sanctuary) 0%, #57381F 100%);
+    color:#F4EEE2;
+    padding:calc(18px + env(safe-area-inset-top)) 16px 18px;
+    text-align:center;
+    position:relative;
+    border-bottom:4px solid var(--brass);
+  }
+  header .eyebrow{
+    font-family: Georgia, serif;
+    letter-spacing:0.14em;
+    text-transform:uppercase;
+    font-size:10px;
+    color:var(--candle);
+    margin-bottom:6px;
+  }
+  header h1{
+    margin:0;
+    font-size:19px;
+    font-weight:600;
+    line-height:1.3;
+  }
+  header p.sub{
+    margin:7px 0 0;
+    font-size:12px;
+    color:#D8C9AE;
+    font-style:italic;
+    line-height:1.4;
+  }
+
+  .progress-wrap{
+    position:sticky;
+    top:0;
+    z-index:20;
+    background: var(--stone);
+    padding:12px 14px 10px;
+    border-bottom:1px solid var(--stone-dark);
+  }
+  .progress-row{
+    display:flex;
+    justify-content:space-between;
+    align-items:baseline;
+    max-width:720px;
+    margin:0 auto 8px;
+    font-size:12.5px;
+    color:var(--ink-soft);
+  }
+  .progress-row strong{
+    color:var(--sanctuary);
+    font-size:15px;
+  }
+  .progress-track{
+    max-width:720px;
+    margin:0 auto;
+    height:9px;
+    background:var(--stone-dark);
+    border-radius:6px;
+    overflow:hidden;
+  }
+  .progress-fill{
+    height:100%;
+    width:0%;
+    background: linear-gradient(90deg, var(--candle), var(--brass));
+    transition: width 0.35s ease;
+  }
+
+  main{
+    max-width:720px;
+    margin:0 auto;
+    padding:16px 12px 10px;
+    width:100%;
+  }
+
+  .welcome-card{
+    background:var(--card-bg);
+    border:1px solid var(--stone-dark);
+    border-left:4px solid var(--sanctuary);
+    border-radius:8px;
+    padding:14px 15px;
+    margin-bottom:18px;
+    box-shadow:var(--shadow);
+  }
+  .welcome-card .tag{
+    font-size:10.5px;
+    letter-spacing:0.08em;
+    text-transform:uppercase;
+    color:var(--sanctuary);
+    font-weight:700;
+    margin-bottom:7px;
+    display:block;
+  }
+  .welcome-card p{
+    margin:0;
+    font-size:14px;
+    line-height:1.6;
+    font-style:italic;
+    color:var(--ink);
+  }
+
+  .block{
+    margin-bottom:22px;
+  }
+  .block-head{
+    display:flex;
+    align-items:baseline;
+    gap:9px;
+    margin-bottom:9px;
+    padding-bottom:6px;
+    border-bottom:2px solid var(--brass);
+    flex-wrap:wrap;
+  }
+  .block-num{
+    font-size:12px;
+    color:#fff;
+    background:var(--sanctuary);
+    border-radius:50%;
+    width:24px;
+    height:24px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    flex-shrink:0;
+    font-weight:700;
+  }
+  .block-title{
+    font-size:15px;
+    font-weight:700;
+    color:var(--sanctuary);
+    line-height:1.3;
+    flex:1;
+    min-width:0;
+  }
+  .block-count{
+    font-size:11px;
+    color:var(--ink-soft);
+    white-space:nowrap;
+    margin-left:33px;
+  }
+
+  .q{
+    display:flex;
+    align-items:flex-start;
+    gap:12px;
+    background:var(--card-bg);
+    border:1px solid var(--stone-dark);
+    border-radius:10px;
+    padding:13px 13px;
+    margin-bottom:9px;
+    cursor:pointer;
+    -webkit-user-select:none;
+    user-select:none;
+    transition: background 0.2s ease, border-color 0.2s ease, opacity 0.2s ease;
+  }
+  .q:active{ border-color:var(--brass); background:#FBF7EF; }
+  .q.done{
+    background:#F1F5EE;
+    border-color:var(--done-green);
+    opacity:0.72;
+  }
+  .q.priority{
+    border-left:3px solid var(--candle);
+  }
+
+  .checkbox{
+    width:26px;
+    height:26px;
+    border-radius:7px;
+    border:2px solid var(--ink-soft);
+    flex-shrink:0;
+    margin-top:1px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    transition: all 0.2s ease;
+  }
+  .q.done .checkbox{
+    background:var(--done-green);
+    border-color:var(--done-green);
+  }
+  .checkbox svg{
+    width:16px;
+    height:16px;
+    opacity:0;
+    transition:opacity 0.15s ease;
+  }
+  .q.done .checkbox svg{ opacity:1; }
+
+  .q-text{
+    flex:1;
+    min-width:0;
+    font-size:14.5px;
+    line-height:1.52;
+    word-wrap:break-word;
+  }
+  .q.done .q-text{
+    text-decoration:line-through;
+    text-decoration-color:var(--done-green);
+    color:var(--ink-soft);
+  }
+  .q-label{
+    display:inline-block;
+    font-size:10px;
+    letter-spacing:0.05em;
+    text-transform:uppercase;
+    color:var(--brass-dark);
+    font-weight:700;
+    margin-bottom:4px;
+  }
+  .star{
+    color:var(--candle);
+    margin-right:3px;
+  }
+
+  footer{
+    position:fixed;
+    bottom:0; left:0; right:0;
+    background:var(--card-bg);
+    border-top:1px solid var(--stone-dark);
+    padding:10px 12px calc(10px + env(safe-area-inset-bottom));
+    display:flex;
+    gap:8px;
+    justify-content:center;
+    box-shadow: 0 -2px 10px rgba(0,0,0,0.08);
+    z-index:30;
+  }
+  footer button{
+    font-family:inherit;
+    font-size:13.5px;
+    padding:11px 14px;
+    border-radius:22px;
+    border:1px solid var(--stone-dark);
+    background:#fff;
+    color:var(--ink);
+    cursor:pointer;
+    flex:1;
+    max-width:220px;
+    min-height:44px;
+  }
+  footer button.reset{ color:#8B3A2E; border-color:#D8B6AE; flex:0 0 auto; max-width:none;}
+  footer button.priority-mode{ background:var(--sanctuary); color:#fff; border-color:var(--sanctuary); }
+  footer button.priority-mode.off{ background:#fff; color:var(--sanctuary); }
+
+  .hint{
+    text-align:center;
+    font-size:12px;
+    color:var(--ink-soft);
+    font-style:italic;
+    margin:0 0 16px;
+    padding:0 4px;
+  }
+
+  @media (max-width:360px){
+    header h1{ font-size:17px; }
+    .q-text{ font-size:14px; }
+  }
+</style>
+</head>
+<body>
+
+<noscript>
+  <div style="padding:24px;font-family:sans-serif;background:#FDEAEA;color:#7A2020;text-align:center;">
+    Este archivo necesita JavaScript activado para funcionar.<br>
+    Ábrelo directamente en Chrome o Safari (no dentro del visor de WhatsApp/Telegram).
+  </div>
+</noscript>
+
+<div id="jsErrorBox" style="display:none;padding:16px;margin:16px;background:#FDEAEA;border:1px solid #E0A0A0;color:#7A2020;border-radius:8px;font-family:sans-serif;font-size:14px;line-height:1.5;">
+  No se pudo cargar la guía correctamente en este visor.<br><br>
+  <strong>Solución:</strong> descarga el archivo y ábrelo con el navegador de tu celular (Chrome o Safari), no desde el visor interno de WhatsApp/Telegram/otra app.
+</div>
+
+<header>
+  <div class="eyebrow">Investigación de Patrimonio Inmueble</div>
+  <h1>Iglesia de José Leonardo Ortiz</h1>
+  <p class="sub">Guía maestra de entrevista de campo — toque cada pregunta al concluirla</p>
+</header>
+
+<div class="progress-wrap">
+  <div class="progress-row">
+    <span>Avance de la entrevista</span>
+    <strong id="progressText">0 / 38</strong>
+  </div>
+  <div class="progress-track"><div class="progress-fill" id="progressFill"></div></div>
+</div>
+
+<main id="main">
+  <div class="welcome-card">
+    <span class="tag">Lectura obligatoria — Inicio</span>
+    <p>"Buenos días/tardes. De verdad le agradecemos mucho que nos reciba y nos regale unos minutos de su tiempo. Somos estudiantes y estamos haciendo un trabajo para conocer más sobre la historia, el valor y la arquitectura de esta iglesia, que es un espacio tan importante para nuestro distrito. Si no tiene inconveniente, nos gustaría grabar el audio de la conversación y tomar algunos apuntes para que no se nos escape ningún detalle de lo que nos cuente. ¿Está de acuerdo?"</p>
+  </div>
+
+  <p class="hint">Toque ⭐ Prioritarias abajo para ver solo lo indispensable si el tiempo apremia.</p>
+
+  <!-- Blocks injected by JS -->
+</main>
+
+<footer>
+  <button id="priorityBtn" class="priority-mode off">⭐ Solo prioritarias</button>
+  <button class="reset" id="resetBtn">Reiniciar</button>
+</footer>
+
+<script>
+const DATA = [
+  { title: "Bloque 1 — Presentación y Vínculo Personal", questions: [
+    { label:"Principal", priority:true, text:"¿Podría contarnos qué labor realiza usted actualmente aquí en la iglesia y desde cuándo forma parte de esta comunidad?" },
+    { label:"Ampliación", text:"¿Cómo empezó su cercanía con este templo? ¿Qué lo motivó a quedarse y apoyar aquí?" },
+    { label:"Ampliación", text:"¿Cómo ha cambiado lo que siente por esta iglesia desde la primera vez que entró hasta el día de hoy?" },
+  ]},
+  { title: "Bloque 2 — Identidad y Testigo del Crecimiento de JLO", questions: [
+    { label:"Principal", priority:true, text:"¿Cómo le llama la gente de José Leonardo Ortiz a esta iglesia en el día a día y qué significa ese nombre para los vecinos?" },
+    { label:"Continuidad", priority:true, text:"Nuestro distrito tiene muchísimo movimiento, comercio y vida propia. Si tuviera que explicarle a alguien que no es de aquí cómo es la zona o el barrio exacto donde está levantada la iglesia, ¿cómo lo describiría?" },
+    { label:"Ampliación", text:"¿Siempre se ha llamado igual o la gente más antigua la conoce con otro nombre?" },
+    { label:"Ampliación", text:"¿Qué lugares de los alrededores, avenidas o negocios conocidos diría usted que van totalmente de la mano con la ubicación de la iglesia?" },
+    { label:"Ampliación", text:"En los primeros tiempos, ¿el espacio alrededor de la iglesia era más abierto y tranquilo, o siempre tuvo esa energía tan viva y comercial que caracteriza a JLO?" },
+    { label:"Ampliación", text:"Hoy en día, con el ruido de los carros, las mototaxis y el comercio exterior, ¿cómo hacen para mantener esa atmósfera de paz una vez que se cruzan las puertas del templo?" },
+  ]},
+  { title: "Bloque 3 — Memoria Viva, Origen y Personajes", questions: [
+    { label:"Principal", priority:true, text:"Nos interesa mucho conocer la historia viva de este lugar, la que guarda la propia gente. Desde lo que se sabe y se cuenta aquí, ¿cómo nació la idea de construir este templo y cómo fueron sus primeros años?" },
+    { label:"Ampliación", text:"¿Se recuerda a algunas familias de la zona, vecinos antiguos o sacerdotes que hayan sido los que más empujaron el proyecto al principio?" },
+    { label:"Ampliación", text:"¿Cómo era la iglesia físicamente cuando usted la conoció por primera vez? ¿Qué diferencias nota con la de ahora?" },
+    { label:"Ampliación", text:"Detrás de estas paredes hay nombres que no merecen ser olvidados. ¿Qué antiguos guías espirituales o colaboradores son los que la comunidad recuerda con más cariño?" },
+    { label:"Ampliación", text:"¿Hay alguna historia, leyenda o relato curioso que los vecinos siempre recuerden o cuenten sobre el pasado de la iglesia?" },
+  ]},
+  { title: "Bloque 4 — Los Detalles del Templo (Arquitectura y Arte Sacro)", questions: [
+    { label:"Principal", priority:true, text:"Si una persona entrara a esta iglesia por primera vez hoy, ¿qué cosas o detalles del espacio cree usted que le llamarían más la atención? ¿Qué la hace diferente frente a otros templos?" },
+    { label:"Ampliación", text:"¿Qué nos podría contar sobre los materiales con los que están hechos las paredes o los techos, y cómo han aguantado el clima de aquí del norte?" },
+    { label:"Ampliación", text:"Si miramos el altar, las imágenes, los lienzos o las decoraciones, ¿cuál de ellos cree que tiene el significado más profundo o el valor más especial para la comunidad?" },
+    { label:"Ampliación", text:"¿Hay piezas o imágenes sagradas que hayan sido donadas por familias emblemáticas del distrito como muestra de su fe?" },
+    { label:"Ampliación", text:"¿Cómo se siente el ambiente por dentro durante las misas principales? ¿Hubo alguna intención en el diseño de los techos o las ventanas para jugar con la entrada de la luz o para que la acústica y la voz se escuchen de forma especial?" },
+    { label:"Ampliación", text:"Con los años, ¿la iglesia ha tenido cambios muy grandes en su estructura o diseño, o se ha intentado mantener tal y como se construyó al inicio?" },
+  ]},
+  { title: "Bloque 5 — El Cuidado del Templo y Resiliencia Climática", questions: [
+    { label:"Principal", priority:true, text:"Cuidar una iglesia con tanta historia y con tanto movimiento alrededor es un reto enorme. Actualmente, ¿cómo ve la situación de la estructura y cómo ha logrado mantenerse firme frente a los temporales o lluvias fuertes que a veces golpean a JLO?" },
+    { label:"Ampliación", text:"¿Cuáles son los principales problemas o peligros físicos que más afectan al edificio hoy en día (por ejemplo, las lluvias intensas, la humedad, el salitre o el paso de los carros pesados)?" },
+    { label:"Ampliación", text:"¿Se recuerda algún año en particular (como los fenómenos de El Niño pasados) donde el agua pusiera realmente en peligro el interior, los techos o las imágenes? ¿Cómo ayudó la gente a protegerlo?" },
+    { label:"Ampliación", text:"¿Qué partes del templo (como los techos, la fachada o las bases) necesitan un arreglo o un mantenimiento más urgente?" },
+    { label:"Ampliación", text:"¿Quiénes se encargan de hacer esos trabajos de mantenimiento? ¿Es un esfuerzo de los mismos fieles o reciben apoyo de la municipalidad o de otra institución?" },
+  ]},
+  { title: "Bloque 6 — El Rol Social y Solidario en las Crisis", questions: [
+    { label:"Principal", priority:true, text:"En los momentos más difíciles que ha pasado nuestro distrito, las iglesias suelen convertirse en un refugio que va más allá de lo espiritual. ¿De qué maneras este templo le ha tendido la mano a los leonardinos en situaciones de necesidad o emergencia?" },
+    { label:"Ampliación", text:"¿Qué actividades de ayuda social, comedores, talleres o apoyo en salud se han gestado tradicionalmente bajo este techo?" },
+    { label:"Ampliación", text:"Además de la ayuda material en emergencias, ¿cómo ha sido el papel de la iglesia para traer paz o unir a los vecinos cuando el distrito ha pasado por momentos de mucha tensión social o problemas de seguridad en las calles?" },
+    { label:"Ampliación", text:"¿Existe algún proyecto o iniciativa solidaria que haya nacido aquí y que hoy sea considerado un pilar histórico de apoyo para las familias más vulnerables del barrio?" },
+    { label:"Ampliación", text:"Cuando el distrito pasa por crisis económicas o emergencias, ¿cómo responde el corazón de los feligreses al llamado de solidaridad de la parroquia?" },
+  ]},
+  { title: "Bloque 7 — Costumbres, Tradiciones y Valor Cultural", questions: [
+    { label:"Principal", priority:true, text:"Desde lo que usted vive aquí todos los días, ¿qué lugar ocupa esta iglesia en las costumbres y la unión de las familias de José Leonardo Ortiz?" },
+    { label:"Ampliación", text:"¿Cómo han cambiado las grandes fiestas patronales o las celebraciones principales de esta iglesia si comparamos las de hace tres décadas con las que vemos hoy en día?" },
+    { label:"Ampliación", text:"¿Existe alguna tradición, procesión, canto o costumbre propia de este templo que antes se hacía con mucha fuerza y que hoy se extrañe o se esté intentando rescatar?" },
+    { label:"Ampliación", text:"¿Cómo ve la participación de la gente joven hoy en día? ¿Se acercan con el mismo cariño y fe que los adultos mayores?" },
+    { label:"Pregunta Clave", priority:true, text:"Si por alguna razón este templo dejara de existir mañana, ¿qué es lo más valioso que perdería la identidad de José Leonardo Ortiz?" },
+  ]},
+  { title: "Bloque 8 — Cierre y Legado", questions: [
+    { label:"Principal", priority:true, text:"Pensando en el futuro, ¿qué mensaje o qué idea le gustaría que las nuevas generaciones de leonardinos entendieran para que sigan protegiendo este templo?" },
+    { label:"Cierre de oro", text:"Para terminar, ¿hay alguna historia, detalle o aspecto sobre el valor de esta iglesia que no hayamos conversado y que usted considere que no debería quedar fuera?" },
+    { label:"Cierre de oro", text:"¿A qué otro vecino antiguo de la zona o persona de la comunidad nos sugeriría buscar para seguir conociendo más sobre la historia de este templo?" },
+  ]},
+];
+
+const STORAGE_KEY = "jlo_interview_progress_v1";
+let state = {};
+try {
+  const saved = JSON.parse(localStorage_shim());
+  if (saved) state = saved;
+} catch(e) { state = {}; }
+
+// No browser storage allowed in artifacts; keep everything in memory only.
+function localStorage_shim(){ return null; }
+
+let priorityMode = false;
+let total = 0;
+
+function qid(bi, qi){ return bi + "_" + qi; }
+
+function render(){
+  const main = document.getElementById("main");
+  // remove old blocks (keep welcome card + hint, first 2 children)
+  const keep = Array.from(main.children).slice(0,2);
+  main.innerHTML = "";
+  keep.forEach(k => main.appendChild(k));
+
+  total = 0;
+  let done = 0;
+
+  DATA.forEach((block, bi) => {
+    const visibleQs = block.questions.filter(q => !priorityMode || q.priority);
+    if (priorityMode && visibleQs.length === 0) return;
+
+    const blockEl = document.createElement("div");
+    blockEl.className = "block";
+
+    const head = document.createElement("div");
+    head.className = "block-head";
+    head.innerHTML = `<span class="block-num">${bi+1}</span>
+      <span class="block-title">${block.title.replace(/^Bloque \d+ — /,'')}</span>
+      <span class="block-count"></span>`;
+    blockEl.appendChild(head);
+
+    let blockDone = 0;
+    visibleQs.forEach((q) => {
+      const realIdx = block.questions.indexOf(q);
+      const id = qid(bi, realIdx);
+      total++;
+      const isDone = !!state[id];
+      if (isDone) { done++; blockDone++; }
+
+      const qEl = document.createElement("div");
+      qEl.className = "q" + (isDone ? " done" : "") + (q.priority ? " priority" : "");
+      qEl.innerHTML = `
+        <div class="checkbox">
+          <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="20 6 9 17 4 12"></polyline>
+          </svg>
+        </div>
+        <div class="q-text">
+          <span class="q-label">${q.priority ? '<span class="star">⭐</span>' : ''}${q.label}</span><br/>
+          ${q.text}
+        </div>`;
+      qEl.addEventListener("click", () => {
+        state[id] = !state[id];
+        render();
+      });
+      blockEl.appendChild(qEl);
+    });
+
+    head.querySelector(".block-count").textContent = `${blockDone}/${visibleQs.length}`;
+    main.appendChild(blockEl);
+  });
+
+  document.getElementById("progressText").textContent = `${done} / ${total}`;
+  document.getElementById("progressFill").style.width = total ? (done/total*100) + "%" : "0%";
+}
+
+document.getElementById("priorityBtn").addEventListener("click", () => {
+  priorityMode = !priorityMode;
+  const btn = document.getElementById("priorityBtn");
+  btn.classList.toggle("off", !priorityMode);
+  btn.textContent = priorityMode ? "Ver todas" : "⭐ Solo prioritarias";
+  render();
+});
+
+document.getElementById("resetBtn").addEventListener("click", () => {
+  if (confirm("¿Reiniciar el avance de toda la entrevista?")) {
+    state = {};
+    render();
+  }
+});
+
+try {
+  render();
+} catch (err) {
+  const box = document.getElementById("jsErrorBox");
+  if (box) box.style.display = "block";
+  console.error("Error al renderizar la guía:", err);
+}
+</script>
+
+</body>
+</html>
